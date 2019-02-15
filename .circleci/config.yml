@@ -34,4 +34,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # echo hello world
-      - run: echo hello world
+      - run: npm test
