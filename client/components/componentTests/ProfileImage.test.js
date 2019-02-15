@@ -1,6 +1,6 @@
 import { shallow, mount, render } from 'enzyme';
 import React from 'react';
-import ProfileImage from './ProfileImage';
+import ProfileImage from '../ProfileImage';
 
 
 describe('<ProfileImage/>', () => {
