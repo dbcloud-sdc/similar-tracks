@@ -1,3 +1,9 @@
 module.exports = {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/prop-types": 0
+  }
 };
