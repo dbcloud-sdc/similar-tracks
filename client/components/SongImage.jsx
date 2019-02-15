@@ -1,12 +1,11 @@
 import React from 'react';
 import style, { css } from 'styled-components';
 
-const ProfileImage = style.div`
-  border-radius: 50%;
+const SongImage = style.div`
  ${props => props.src && css`background-image: ${props.src}`};
   height: 50px;
   width: 50px;
   background-size: 50px 50px;
 `;
 
-export default ProfileImage;
+export default SongImage;

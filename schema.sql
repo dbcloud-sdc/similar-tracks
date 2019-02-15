@@ -10,7 +10,7 @@ create table if not exists songs (
   id int not null auto_increment, 
   title varchar(56) not null,
   album_pic varchar(110) not null, 
-  user_id varchar(20) not null,
+  user_id int not null,
   num_plays int default null,
   num_likes int default null, 
   num_reposts int default null,
