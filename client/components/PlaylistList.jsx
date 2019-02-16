@@ -17,7 +17,7 @@ export default class PlaylistList extends React.Component {
       <div style={{ width: "50%" }}>
         <Grey><PlaylistListHeader /></Grey>
         <ListSeparator />
-        <div>
+        <div className="headpad">
           {this.props.playlists.map(playlist => <PlaylistListItem playlist={playlist} />)}
         </div>
       </div>

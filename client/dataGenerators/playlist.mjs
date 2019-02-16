@@ -5,7 +5,7 @@ export default function generatePlaylist() {
     id: faker.random.number(),
     username: faker.internet.userName(),
     pic: faker.image.imageUrl(),
-    title: faker.lorem.sentence(5),
+    title: faker.lorem.sentence(2),
     num_likes: faker.random.number(),
     num_reposts: faker.random.number(),
     song_id: 1,

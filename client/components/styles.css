@@ -1,0 +1,27 @@
+.app {
+  background: #fff;
+  top: 230px;
+  right: 0;
+  position: absolute;
+  bottom: auto;
+  width: 480px;
+  height: 900px;
+  font: 14px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  padding-top: 13px
+}
+.stats {
+  font-size: 11px;
+}
+.bubbles {
+  padding-top: 10px
+}
+.bubbles:hover {
+  cursor: pointer;
+}
+.nexttopic {
+    padding: 0px 0px 2px;
+}
+.headpad {
+  padding-bottom: 17px
+}

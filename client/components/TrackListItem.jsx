@@ -17,14 +17,14 @@ export default class TrackListItem extends React.Component {
           <TrackImage src={`url("${this.props.track.album_pic}")`} style={{ float: "left", marginRight: ".5em" }} />
         </span>
         <span>
-          <div>
+          <div className="nexttopic">
             <Grey>{username}</Grey>
           </div>
-          <div>
+          <div className="nexttopic">
             {title}
           </div>
-          <div>
-            <Grey><StatsBar plays={num_plays} likes={num_likes} reposts={num_reposts} comments={num_comments} /></Grey>
+          <div className="nexttopic">
+            <Grey className="nexttopic"><StatsBar plays={num_plays} likes={num_likes} reposts={num_reposts} comments={num_comments} /></Grey>
           </div>
         </span>
       </div>

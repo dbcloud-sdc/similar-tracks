@@ -12,7 +12,7 @@ export default class StatsBar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="stats">
         {this.props.plays && <PlaysLabel plays={this.props.plays} /*onClick={this.props.playsClick}*/ />}
         {this.props.likes && <LikesLabel likes={this.props.likes} /*onClick={this.props.likesClick}*/ />}
         {this.props.reposts && <RepostsLabel reposts={this.props.reposts} />}

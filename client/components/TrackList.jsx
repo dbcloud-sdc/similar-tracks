@@ -17,7 +17,7 @@ export default class TrackList extends React.Component {
       <div style={{ width: "50%" }}>
         <Grey><TracksListHeader /></Grey>
         <ListSeparator />
-        <div>
+        <div className="headpad">
           {this.props.tracks.map(track => <TrackListItem track={track} />)}
         </div>
       </div>

@@ -17,14 +17,14 @@ export default class PlaylistListItem extends React.Component {
           <TrackImage src={`url("${this.props.playlist.pic}")`} style={{ float: "left", marginRight: ".5em" }} />
         </span>
         <span>
-          <div>
+          <div className="nexttopic">
             <Grey>{username}</Grey>
           </div>
-          <div>
+          <div className="nexttopic">
             {title}
           </div>
-          <div>
-            <Grey><StatsBar likes={num_likes} reposts={num_reposts} /></Grey>
+          <div className="nexttopic">
+            <Grey className="nexttopic"><StatsBar likes={num_likes} reposts={num_reposts} /></Grey>
           </div>
         </span>
       </div>
