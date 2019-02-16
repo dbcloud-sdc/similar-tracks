@@ -9,6 +9,3 @@ describe('<ProfileImage/>', () => {
     expect(wrapper.find(ProfileImage)).toHaveProp('src');
   })
 });
-
-
-
