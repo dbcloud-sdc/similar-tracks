@@ -1,21 +1,18 @@
-import React from 'react';
+import React from "react";
+import IconLabel from "./IconLabel";
+
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faHeart, faPlay, faRetweet, faCommentAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import IconLabel from './IconLabel';
+import { faPlay } from '@fortawesome/free-solid-svg-icons'
+library.add(faPlay);
 
-
-class PlaysLabel extends React.Component {
+export default class PlaysLabel extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
-      <IconLabel faIcon={"heart"} text={this.props.plays} />
+      <IconLabel faIcon={"play"} text={this.props.plays} />
     )
   }
 }
-
-export default PlaysLabel;
