@@ -12,6 +12,7 @@ export default function generateSong() {
     album_id: faker.random.number(),
     playlistid: faker.random.number(),
     user_id: faker.random.number(),
+    username: faker.internet.userName(),
   };
 }
 

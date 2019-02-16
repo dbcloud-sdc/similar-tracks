@@ -1,6 +1,6 @@
 import { shallow, mount, render } from 'enzyme';
 import React from 'react';
-import ProfileImage from '../ProfileImage';
+import ProfileImage from '../components/ProfileImage';
 
 
 describe('<ProfileImage/>', () => {
@@ -9,3 +9,6 @@ describe('<ProfileImage/>', () => {
     expect(wrapper.find(ProfileImage)).toHaveProp('src');
   })
 });
+
+
+
