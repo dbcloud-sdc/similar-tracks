@@ -1,5 +1,6 @@
 import React from 'react';
 import style, { css } from 'styled-components';
+import PlayTracksIcon from './PlayTracksIcon';
 
 const TrackImage = style.div`
   ${props => props.src && css`background-image: ${props.src}`};
@@ -8,4 +9,18 @@ const TrackImage = style.div`
   background-size: 50px 50px;
 `;
 
-export default TrackImage;
+
+export default class PlayTrackImage extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return (
+      <TrackImage src={this.props.src} style={{ float: "left", marginRight: ".5em", }}>
+        <PlayTracksIcon display={this.props.isSelected ? "inline-block" : "none"} style={{ margin: "auto", width: "50px", height: "50px" }} />
+      </TrackImage>
+    )
+  }
+}
+

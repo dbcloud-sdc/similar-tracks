@@ -1,10 +1,11 @@
 import faker from 'faker';
 
 export default function generatePlaylist() {
+  const id = faker.random.number({ min: 1, max: 60 });
   return {
-    id: faker.random.number(),
+    id,
     username: faker.internet.userName(),
-    pic: faker.image.imageUrl(),
+    pic: `https://s3.us-east-2.amazonaws.com/zlplaylistpics/playlist_${id}.jpg`,
     title: faker.lorem.sentence(2),
     num_likes: faker.random.number(),
     num_reposts: faker.random.number(),

@@ -15,10 +15,10 @@ export default class LikesListHeader extends React.Component {
       <div>
         <span style={{ align: "left" }}>
           <LikesLabel />
-          <span>47K LIKES </span>
+          <span>{this.props.likes} LIKES </span>
         </span>
         <span style={{ float: "right" }}>
-          <text>View All</text>
+          View All
         </span>
       </div>
     );

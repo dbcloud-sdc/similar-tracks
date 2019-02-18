@@ -16,7 +16,7 @@ export default class PlaylistListHeader extends React.Component {
           <InPlaylistLabel />
         </span>
         <span style={{ float: "right" }}>
-          <text>View All</text>
+          View All
         </span>
       </div>
     );

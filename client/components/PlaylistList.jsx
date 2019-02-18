@@ -14,11 +14,11 @@ export default class PlaylistList extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "50%" }}>
+      <div style={{ width: "60%" }}>
         <Grey><PlaylistListHeader /></Grey>
         <ListSeparator />
         <div className="headpad">
-          {this.props.playlists.map(playlist => <PlaylistListItem playlist={playlist} />)}
+          {this.props.playlists.map((playlist, index) => <PlaylistListItem key={index} playlist={playlist} />)}
         </div>
       </div>
     );

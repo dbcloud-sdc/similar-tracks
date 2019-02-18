@@ -1,11 +1,12 @@
 import faker from 'faker';
 
 export default function generateUser() {
+  const id = faker.random.number({ min: 1, max: 120 });
   return {
-    id: faker.random.number(),
+    id,
     username: faker.internet.userName(),
     followers: faker.random.number(),
-    pic: faker.image.imageUrl(),
+    pic: `https://s3.us-east-2.amazonaws.com/zluserpics/user_${id}.jpg`,
     city: faker.address.city(),
     ustate: faker.address.state(),
     country: faker.address.country(),

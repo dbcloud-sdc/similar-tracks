@@ -16,7 +16,7 @@ export default class TracksListHeader extends React.Component {
           <RelatedTracksLabel />
         </span>
         <span style={{ float: "right" }}>
-          <text>View All</text>
+          View All
         </span>
       </div>
     );

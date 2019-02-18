@@ -14,11 +14,16 @@ export default class TrackList extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "50%" }}>
+      <div style={{ width: "60%" }}>
         <Grey><TracksListHeader /></Grey>
         <ListSeparator />
         <div className="headpad">
-          {this.props.tracks.map(track => <TrackListItem track={track} />)}
+          {this.props.tracks.map(track => <TrackListItem
+            select={this.props.select}
+            track={track}
+            key={track.id}
+          />)
+          }
         </div>
       </div>
     );
