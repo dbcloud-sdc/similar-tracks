@@ -14,7 +14,7 @@ drop table if exists users;
 
 create table if not exists users (
   id int not null auto_increment, 
-  username varchar(63) not null,
+  username varchar(12) not null,
   followers int default 1,
   pic varchar(511) not null, 
   city varchar(255) default null,
