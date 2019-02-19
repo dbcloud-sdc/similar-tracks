@@ -16,11 +16,11 @@
 
 ## Usage
 
-> After npm install, please run the following: 
-> Create database: 'npm run createDB'
-> Seed database: 'npm run seedDB'
-> Run backend server: 'npm run server'
-> Run webpack server: 'npm run start'
+1. After npm install, please run the following: 
+2. Create database: 'npm run createDB'
+3. Seed database: 'npm run seedDB'
+4.  Run backend server: 'npm run server'
+5.  Run webpack server: 'npm run start'
 
 ## Requirements
 
