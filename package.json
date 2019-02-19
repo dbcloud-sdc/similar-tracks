@@ -13,7 +13,7 @@
     "build": "webpack --mode=production",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "server": "nodemon --experimental-modules server/index.mjs",
-    "createDB": "mysql -uroot  > source db/schema.sql",
+    "createDB": "mysql -u root  < db/schema.sql",
     "seedDB": "node --experimental-modules db/seed.mjs"
   },
   "dependencies": {
