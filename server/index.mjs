@@ -1,7 +1,7 @@
 import express from 'express';
 import mysql from 'mysql';
 
-const cors = require('cors');
+import cors from 'cors';
 
 const connection = mysql.createConnection({
   host: 'localhost',
