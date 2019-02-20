@@ -30,19 +30,19 @@ class App extends React.Component {
 
   // return a promise that resolves once our express server returns the users
   getUsersPromise() {
-    return fetch("/api/users")
+    return fetch("http://localhost:3000/api/users")
       .then(response => response.json())
   }
 
   // and for the songs
   getSongsPromise() {
-    return fetch("/api/songs")
+    return fetch("http://localhost:3000/api/songs")
       .then(response => response.json())
   }
 
   // and for the playlists
   getPlaylistsPromise() {
-    return fetch("/api/playlists")
+    return fetch("http://localhost:3000/api/playlists")
       .then(response => response.json())
   }
 

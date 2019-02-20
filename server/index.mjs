@@ -1,6 +1,8 @@
 import express from 'express';
 import mysql from 'mysql';
 
+const cors = require('cors');
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -10,6 +12,7 @@ const connection = mysql.createConnection({
 const app = express();
 app.use(express.json());
 app.use(express.static('dist'));
+app.use(cors());
 // static server here for dist files in production...
 
 // endpoints
