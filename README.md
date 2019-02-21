@@ -20,7 +20,7 @@
 2. Create database: 'npm run createDB'
 3. Seed database: 'npm run seedDB'
 4. Run backend server: 'npm run server'
-5. Run webpack server: 'npm run start'
+5. Run webpack server: 'npm run build:watch'
 
 ## Requirements
 

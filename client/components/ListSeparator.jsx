@@ -1,6 +1,9 @@
 import React from 'react';
 import style, { css } from 'styled-components';
 
+// const { styled } = window;
+
+
 const ListSeparator = style.hr`
   color: #f2f2f2
   height: 1px

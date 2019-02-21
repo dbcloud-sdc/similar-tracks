@@ -2,9 +2,9 @@
 /*                      CREATE MAIN TABLES                */
 /* -------------------------------------------------------*/
 
-create database if not exists zounds;
+create database if not exists zound;
 
-use zounds;
+use zound;
 
 
 drop table if exists playlists;

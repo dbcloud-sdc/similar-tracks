@@ -13,7 +13,7 @@ export default class BubbleList extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "60%" }}>
+      <div style={{ width: "55%" }}>
         <Grey><LikesListHeader likes={this.props.likes} /></Grey>
         <ListSeparator />
         <div className={"bubbles"}>

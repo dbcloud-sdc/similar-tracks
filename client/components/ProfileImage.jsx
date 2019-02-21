@@ -1,5 +1,7 @@
 import React from 'react';
 import style, { css } from 'styled-components';
+// const { styled } = window;
+
 
 const ProfileImage = style.div`
   border-radius: 50%;

@@ -6,7 +6,7 @@ import cors from 'cors';
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  database: 'zoundloud',
+  database: 'zound',
 });
 
 const app = express();

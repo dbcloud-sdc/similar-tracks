@@ -14,7 +14,7 @@ export default class TrackList extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "60%" }}>
+      <div style={{ width: "55%" }}>
         <Grey><TracksListHeader /></Grey>
         <ListSeparator />
         <div className="headpad">

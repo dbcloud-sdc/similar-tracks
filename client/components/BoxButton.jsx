@@ -1,5 +1,7 @@
 import style from 'styled-components';
 
+// const { styled } = window;
+
 const BoxButton = style.span`
 border: 1px solid #e5e5e5;
 border-radius: 3px;

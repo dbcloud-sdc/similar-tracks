@@ -26,11 +26,10 @@ data.playlists = data.playlists.map(playlist => ({
 }));
 
 
-
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  database: 'zoundloud',
+  database: 'zound',
   multipleStatements: true,
 });
 
@@ -100,7 +99,6 @@ INSERT INTO users(field0, field1, ...) VALUES(value0, value1, ...)
 */
 
 function seedData() {
-
   data.users.forEach((user) => {
     const sql = `INSERT INTO users(${Object.keys(user).slice(1).join(',')}) VALUES(${Object.values(user).slice(1).map(value => (!isBoolean(value) ? `"${value}"` : value ? '1' : '0')).join(',')})`;
 
