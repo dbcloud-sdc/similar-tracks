@@ -16,7 +16,8 @@ class App extends React.Component {
       songs: [],
       users: [],
       playlists: [],
-      currentlySelected: { num_likes: undefined }
+      currentlySelected: { num_likes: undefined },
+      songPlaying: 1
     }
 
     this.selectSong = this.selectSong.bind(this)
@@ -30,19 +31,25 @@ class App extends React.Component {
 
   // return a promise that resolves once our express server returns the users
   getUsersPromise() {
-    return fetch("http://localhost:3000/api/users")
+    const id = window.location.pathname
+    return fetch(`http://rightbar-env.hbtddaitbq.us-east-2.elasticbeanstalk.com/api${id}users`)
       .then(response => response.json())
   }
 
   // and for the songs
   getSongsPromise() {
-    return fetch("http://localhost:3000/api/songs")
-      .then(response => response.json())
+    const id = window.location.pathname
+    return fetch(`http://rightbar-env.hbtddaitbq.us-east-2.elasticbeanstalk.com/api${id}relatedtracks`)
+      .then(response => {
+        return response.json()
+      }
+      )
   }
 
   // and for the playlists
   getPlaylistsPromise() {
-    return fetch("http://localhost:3000/api/playlists")
+    const id = window.location.pathname
+    return fetch(`http://rightbar-env.hbtddaitbq.us-east-2.elasticbeanstalk.com/api${id}playlists`)
       .then(response => response.json())
   }
 
@@ -64,7 +71,7 @@ class App extends React.Component {
         }, {});
 
         // console.log(userlookup)
-
+        console.log('songs', songs)
         //put the users on the songs
         songs = songs.map(song => {
           return { ...song, user: userlookup[song.username] }
@@ -80,6 +87,7 @@ class App extends React.Component {
           users: users,
           songs: songs,
           playlists: playlists,
+          songPlaying: window.location.pathname,
 
           // set the currently selected to the first one in the list
           currentlySelected: songs[0]
@@ -92,6 +100,8 @@ class App extends React.Component {
   }
 
   render() {
+    // console.log('hello world');
+    // console.log(window.location.pathname)
     return (
       <div className='app'>
         {/* app is pretty simple, just a track list, a playlist, and our user likes */}

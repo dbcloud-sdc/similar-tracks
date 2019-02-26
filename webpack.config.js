@@ -1,5 +1,6 @@
 
 module.exports = {
+  context: __dirname,
   entry: './client/index.js',
   module: {
     rules: [
@@ -27,7 +28,9 @@ module.exports = {
   ],
   devServer: {
     contentBase: './dist',
-    hot: true,
+    compress: true,
+    public: 'ec2-3-18-30-249.us-east-2.compute.amazonaws.com',
+    disableHostCheck: true,
 
     // every request made to 'locahost:8080/api/xxxx' will be proxyfied to 'http://localhost:3000/api/xxxx'
 
@@ -40,11 +43,11 @@ module.exports = {
     // this way, as far as react is concerned, it only ever talked to web pack dev server on port 8080
     // so we dont get CORS errors.
 
-    proxy: {
-      '/api/*': {
-        target: 'http://localhost:3000',
-        secure: false,
-      },
-    },
+    // proxy: {
+    //   '/api/*': {
+    //     target: 'http://localhost:3000',
+    //     secure: false,
+    //   },
+    // },
   },
 };

@@ -27,9 +27,10 @@ data.playlists = data.playlists.map(playlist => ({
 
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'zound',
+  host: 'rightstuff.cvojhsq84htk.us-east-2.rds.amazonaws.com',
+  user: 'rightstuff',
+  password: 'servicepony',
+  database: 'rightbar',
   multipleStatements: true,
 });
 

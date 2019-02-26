@@ -1,10 +1,10 @@
 /* -------------------------------------------------------*/
 /*                      CREATE MAIN TABLES                */
 /* -------------------------------------------------------*/
+drop database if exists rightbar;
+create database if not exists rightbar;
 
-create database if not exists zound;
-
-use zound;
+use rightbar;
 
 
 drop table if exists playlists;
