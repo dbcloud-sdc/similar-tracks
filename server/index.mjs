@@ -1,4 +1,9 @@
 import express from 'express';
+import CONFIG from '../config.js';
+
+
+
+import express from 'express';
 import mysql from 'mysql';
 import path from 'path';
 import cors from 'cors';
