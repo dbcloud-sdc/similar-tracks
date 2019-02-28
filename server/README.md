@@ -88,11 +88,11 @@
 
 * **URL/ENDPOINT**
 
-  - `/api/song/:id/`
+  - `/api/song/:id`
 
 * **METHOD**
 
-  - `PUT` or `PATCH`
+  - `POST`
 
 *  **Required Body Parameters**
 
@@ -128,11 +128,11 @@
 
 * **URL/ENDPOINT**
 
-  - `/api/song/:id/`
+  - `/api/song/:id`
 
 * **METHOD**
 
-  - `POST`
+  - `PUT/PATCH`
 
 *  **Optional Body Parameters**
 
@@ -175,11 +175,11 @@
 
 * **URL/ENDPOINT**
 
-  - `/api/song/:id/`
+  - `/api/song/:id`
 
 * **METHOD**
 
-  - `PUT` or `PATCH`
+  - `DELETE`
 
 * **Success Response:**
 
