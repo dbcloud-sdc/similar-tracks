@@ -1,3 +1,4 @@
+import CONFIG from '../config.js';
 //TODO: depedencies
 //TODO: signal flow for SQL vs No-SQL (TBD - after seed)
 
