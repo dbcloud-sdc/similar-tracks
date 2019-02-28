@@ -1,8 +1,8 @@
 import mysql from 'mysql';
 import { isBoolean } from 'util';
-import { generateSongs } from '../client/dataGenerators/song.mjs';
-import { generateUsers } from '../client/dataGenerators/user.mjs';
-import { generatePlaylists } from '../client/dataGenerators/playlist.mjs';
+import { generateSongs } from './dataGenerators/song.mjs';
+import { generateUsers } from './dataGenerators/user.mjs';
+import { generatePlaylists } from './dataGenerators/playlist.mjs';
 
 
 const data = {
