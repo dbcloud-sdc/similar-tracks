@@ -78,7 +78,11 @@ app.get('/api/song/:id/retrieve', (req, res) => {
   });
 });
 
-app.post('/api/song/:id/update', (req, res) => {
+app.put('/api/song/:id/update', (req, res) => {
+  //NOTE: for PUT/UPDATE, data validation should occur with an option to return an error BAD REQUEST (400)
+  //not worth doing right now
+
+  //the below might be an async wait, but I don't want to worry about that right now since it wont be used.
   let song = req.data;
 
   let updateString = '';
@@ -97,7 +101,7 @@ app.post('/api/song/:id/update', (req, res) => {
   });
 });
 
-app.put('/api/song/:id/create', (req, res) => {
+app.post('/api/song/:id/create', (req, res) => {
   let song = req.data;
   let sql = `INSERT INTO songs(${Object.keys(song).slice(1).join(',')}) VALUES(${Object.values(song).slice(1).map(value => (!isBoolean(value) ? `"${value}"` : value ? '1' : '0')).join(',')})`;
   connection.query(sql, (err, res) => {
@@ -112,10 +116,10 @@ app.put('/api/song/:id/create', (req, res) => {
 app.delete('/api/song/:id/delete', (req, res) => {
   connection.query(`DELETE ${params.id} FROM songs`, (err, dbres) => {
     if (err) {
-      res.json(err);
+      res.status(500).end();
     }
     //TODO: this should be a status code
-    res.json(dbres);
+    res.status(200).end();
   });
 });
 //* ************************* OLD ENDPOINTS **************************** *//
