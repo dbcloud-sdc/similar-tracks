@@ -90,10 +90,20 @@ const cors = () => {
 
 //********************** START SERVER **********************
 ((initialize) => {
-  //functions here
+  //SECURITY:
   cors();
+
+  //CLIENT:
   route.serveClient();
   route.serveSongs();
+
+  //CRUD:
+  route.read();
+  route.update();
+  route.delete();
+  route.create();
+
+  //EXPOSE:
   server.listen(port, () => {
     console.log(`listening on port ${port}`);
   });
