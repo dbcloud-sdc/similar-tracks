@@ -26,6 +26,32 @@
   * **Code:** `404 NOT FOUND`
   * **Content:** `{ error : "" }`
 
+### READ: Retrieve A Single, Specified Track
+<_Given a songID, return the top three related tracks from the database_>
+
+* **URL/ENDPOINT**
+
+    `/api/song/:id/retrieve`
+
+* **METHOD**
+
+  - `GET`
+
+*  **URL Params**
+
+  `id` _(Number)_ : ID of the song to retrieve related tracks
+
+* **Success Response:**
+
+  * **Code:** 200
+  * **Content:** `{} //TODO: datastructure`
+
+* **Error Response:**
+
+  * **Code:** `404 NOT FOUND`
+  * **Content:** `{ error : "" }`
+
+
 
 ### CREATE: Add New Track
 <_Given a songID and data, update paramaters of the record _>
