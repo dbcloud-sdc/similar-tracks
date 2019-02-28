@@ -32,14 +32,14 @@ class App extends React.Component {
   // return a promise that resolves once our express server returns the users
   getUsersPromise() {
     const id = window.location.pathname
-    return fetch(`http://rightbar-env.hbtddaitbq.us-east-2.elasticbeanstalk.com/api${id}users`)
+    return fetch(`http://localhost:8081/api${id}users`)
       .then(response => response.json())
   }
 
   // and for the songs
   getSongsPromise() {
     const id = window.location.pathname
-    return fetch(`http://rightbar-env.hbtddaitbq.us-east-2.elasticbeanstalk.com/api${id}relatedtracks`)
+    return fetch(`http://localhost:8081/api${id}relatedtracks`)
       .then(response => {
         return response.json()
       }
@@ -49,7 +49,7 @@ class App extends React.Component {
   // and for the playlists
   getPlaylistsPromise() {
     const id = window.location.pathname
-    return fetch(`http://rightbar-env.hbtddaitbq.us-east-2.elasticbeanstalk.com/api${id}playlists`)
+    return fetch(`http://localhost:8081/api${id}playlists`)
       .then(response => response.json())
   }
 
