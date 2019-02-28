@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   fetchData() {
-    this.getSongsPromise()
+    this.getSongs()
       .then((songs) => {
         this.setState({
           songs: songs,
