@@ -1,19 +1,24 @@
 const CONFIG = {
-  DATABASE_POSTGRES: {
+  DATABASE_SQL: {
     URL: 'url',
     USER: 'user',
     PASS: 'pass',
-    DBNAME: 'db name'
+    DBNAME: 'dbname'
   },
-  DATABASE_CASSANDRA: {
+  DATABASE_NOSQL: {
     URL: 'url',
     USER: 'user',
     PASS: 'pass',
-    DBNAME: 'db name'
+    DBNAME: 'dbname'
   },
   SERVER: {
-    SERVER_URL: 'localhost',
-    SERVER_PORT: ''
+    URL: 'localhost',
+    PORT: '3000'
+  },
+  CORS: {
+    ENABLED: false,
+    ORIGIN: '*', //don't do this, OK?
+    METHODS: 'GET, PUT, POST, DELETE'
   }
 };
 
