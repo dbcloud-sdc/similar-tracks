@@ -29,3 +29,6 @@ dist/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+#config files
+config.js
