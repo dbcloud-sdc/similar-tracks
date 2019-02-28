@@ -69,7 +69,7 @@ app.get('/api/song/:id/playlists', (req, res) => {
 
 //* ************************* NEW ENDPOINTS **************************** *//
 
-app.get('/api/song/:id/retrieve', (req, res) => {
+app.get('/api/song/:id/', (req, res) => {
   connection.query(`select ${params.id} from songs`, (err, dbres) => {
     if (err) {
       res.json(err);
@@ -78,7 +78,7 @@ app.get('/api/song/:id/retrieve', (req, res) => {
   });
 });
 
-app.put('/api/song/:id/update', (req, res) => {
+app.put('/api/song/:id/', (req, res) => {
   //NOTE: for PUT/UPDATE, data validation should occur with an option to return an error BAD REQUEST (400)
   //not worth doing right now
 
@@ -101,7 +101,7 @@ app.put('/api/song/:id/update', (req, res) => {
   });
 });
 
-app.post('/api/song/:id/create', (req, res) => {
+app.post('/api/song/:id/', (req, res) => {
   let song = req.data;
   let sql = `INSERT INTO songs(${Object.keys(song).slice(1).join(',')}) VALUES(${Object.values(song).slice(1).map(value => (!isBoolean(value) ? `"${value}"` : value ? '1' : '0')).join(',')})`;
   connection.query(sql, (err, res) => {
@@ -113,7 +113,7 @@ app.post('/api/song/:id/create', (req, res) => {
   });
 });
 
-app.delete('/api/song/:id/delete', (req, res) => {
+app.delete('/api/song/:id/', (req, res) => {
   connection.query(`DELETE ${params.id} FROM songs`, (err, dbres) => {
     if (err) {
       res.status(500).end();
