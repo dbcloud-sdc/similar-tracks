@@ -32,3 +32,7 @@ dist/
 
 #config files
 config.js
+
+#data
+data.js
+.csv
