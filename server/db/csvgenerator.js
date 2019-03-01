@@ -4,9 +4,11 @@ const path = require('path');
 const { Readable } = require('stream');
 
 class Generate extends Readable {
-  constructor(opt) {
-    super(opt);
+  constructor(generator) {
+    super();
     //variables go here
+    this.generator = generator; //the provided generator function
+
     this.dataSetTarget = 30000000;
     this.records = 0;
     this.document = 'id,title,album_pic,username,user_pic,num_likes,num_comments,num_reposts\n'; //start with the headers
