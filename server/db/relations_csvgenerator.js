@@ -34,10 +34,10 @@ class Generate extends Readable {
   relatedRecord(id) {
     let data = [id+1];
     for (let i = 0; i < 3; i++) {
-      let rand = Math.ceil(Math.random()*10000000);
+      let rand = Math.ceil(Math.random()*30000000);
       while (rand === id+1) { //the related song cannot be the same
         console.log('same song found');
-        rand = Math.ceil(Math.random()*10000000);
+        rand = Math.ceil(Math.random()*30000000);
       }
       data.push(rand);
     }
