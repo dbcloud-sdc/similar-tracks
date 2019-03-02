@@ -11,7 +11,7 @@ class Generate extends Readable {
 
     this.dataSetTarget = 30000000;
     this.records = 0;
-    this.document = 'id,title,album_pic,username,user_pic,num_likes,num_comments,num_reposts\n'; //start with the headers
+    this.document = 'id,song_id,title,album_pic,username,user_pic,num_likes,num_comments,num_reposts\n'; //start with the headers
   }
 
   _read() {
@@ -41,7 +41,8 @@ class Generate extends Readable {
 
   songRecord(id) {
     let data = [];
-    data.push(id+1);                                              //id, start at 1
+    data.push(id+1);    
+    data.push(id+1);                                              //id, start at 1    //id, start at 1
     data.push(faker.lorem.words(Math.ceil(Math.random() * 2))); //song title
     data.push(`${Math.round(Math.random()*1000)}`);         //album picture
     data.push(faker.internet.userName());                       //username
@@ -51,7 +52,7 @@ class Generate extends Readable {
     data.push(this.distributedNumber(popularity,10000));        //num_comments
     data.push(this.distributedNumber(popularity,10000));        //num_reposts
     //convert to CSV row format:
-    this.document += `${data[0]},${data[1]},${data[2]},${data[3]},${data[4]},${data[5]},${data[6]},${data[7]}\n`;
+    this.document += `${data[0]},${data[1]},${data[2]},${data[3]},${data[4]},${data[5]},${data[6]},${data[7]},${data[8]}\n`;
   }
 }
 
