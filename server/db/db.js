@@ -1,8 +1,16 @@
-import CONFIG from '../config.js';
-//TODO: depedencies
-//TODO: signal flow for SQL vs No-SQL (TBD - after seed)
+const CONFIG = require('../../config.js');
+const pg = require('pg');
+const path = require('path');
 
-const DB = {
+const client = new pg.Client({
+  user: CONFIG.POSTGRES.USER,
+  host: CONFIG.POSTGRES.URL,
+  database: CONFIG.POSTGRES.DBNAME,
+  password: CONFIG.POSTGRES.PASS,
+  port: CONFIG.POSTGRES.PORT,
+});
+
+module.export = {
   getSongs: (id) => {
     //placeholder
     return new Promise();
@@ -21,7 +29,8 @@ const DB = {
   },
   delete: (id) => {
     return new Promise();
+  },
+  reset: () => {
+
   }
 };
-
-export default DB;

@@ -44,8 +44,10 @@
     "webpack-cli": "^3.2.3"
   },
   "devDependencies": {
+    "nodemon": "^1.18.10",
+    "pg": "^7.8.1",
+    "pg-copy-streams": "^1.2.0",
     "react-hot-loader": "^4.6.5",
-    "webpack-dev-server": "^3.2.0",
-    "nodemon": "^1.18.10"
+    "webpack-dev-server": "^3.2.0"
   }
 }
