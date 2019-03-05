@@ -10,10 +10,24 @@ const client = new pg.Client({
   port: CONFIG.POSTGRES.PORT,
 });
 
-module.export = {
+client.connect(); //TODO: determine if the connection should be open/closed or remain open
+
+const query = (term) => {
+  return new Promise((resolve, reject) => {
+    client.query(term, (err, res) => {
+      if (err) reject(err);
+      else     resolve(res);
+    });
+  });
+}
+
+module.exports = {
   getSongs: (id) => {
-    //placeholder
-    return new Promise();
+    const term = `SELECT * FROM songs WHERE
+               id=(SELECT songa FROM related WHERE id=${id})
+            OR id = (SELECT songb FROM related WHERE id=${id})
+            OR id = (SELECT songc FROM related WHERE id=${id});`
+    return query(term);
   },
   create: (id, record) => {
     //placeholder
