@@ -29,7 +29,7 @@ class App extends React.Component {
     //note, this endpath is not correct, so I fixed it.
     //the user should navigate to /song/1, not /song/1/, which implies directory access, instead of file access
     const id = window.location.pathname;
-    return fetch(`${CONFIG.SERVER.URL}:${CONFIG.SERVER.PORT}/api${id}/relatedtracks`)
+    return fetch(`http://${CONFIG.SERVER.URL}:${CONFIG.SERVER.PORT}/api${id}relatedtracks`)
       .then(response => {
         return response.json()
       }
@@ -39,14 +39,6 @@ class App extends React.Component {
   fetchData() {
     this.getSongs()
       .then((songs) => {
-        //TEMPORARY (until the database can be corrected)
-        songs.forEach((song)=> {
-          song.user = {
-            username: 'hello',
-            pic: ''
-          }
-        })
-
         this.setState({
           songs: songs,
           songPlaying: window.location.pathname,
