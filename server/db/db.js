@@ -1,6 +1,5 @@
 const CONFIG = require('../../config.js');
 const pg = require('pg');
-const path = require('path');
 
 const client = new pg.Client({
   user: CONFIG.POSTGRES.USER,
@@ -22,29 +21,15 @@ const query = (term) => {
 }
 
 module.exports = {
-  getSongs: (id) => {
-    const term = `SELECT * FROM songs WHERE
-               id=(SELECT songa FROM related WHERE id=${id})
+  getRelatedSongs: (id) => {
+    let term = `SELECT * FROM songs WHERE
+               id = (SELECT songa FROM related WHERE id=${id})
             OR id = (SELECT songb FROM related WHERE id=${id})
             OR id = (SELECT songc FROM related WHERE id=${id});`
     return query(term);
   },
-  create: (id, record) => {
-    //placeholder
-    return new Promise();
+//***** For updating the related table via CRUD *****/
+  process: (term) => {
+    return query(term);
   },
-  read: (id) => {
-    //placeholder
-    return new Promise();
-  },
-  update: (id, record) => {
-    //placeholder
-    return new Promise();
-  },
-  delete: (id) => {
-    return new Promise();
-  },
-  reset: () => {
-
-  }
 };
