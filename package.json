@@ -23,10 +23,10 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "acorn": "^6.1.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
     "babel-preset-airbnb": "^3.2.0",
-    "acorn": "^6.1.0",
     "cors": "^2.8.5",
     "css-loader": "^2.1.0",
     "express": "^4.16.4",
@@ -44,6 +44,7 @@
     "webpack-cli": "^3.2.3"
   },
   "devDependencies": {
+    "cassandra-driver": "^4.0.0",
     "nodemon": "^1.18.10",
     "pg": "^7.8.1",
     "pg-copy-streams": "^1.2.0",
