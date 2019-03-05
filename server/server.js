@@ -15,7 +15,11 @@ const route = {
   serveSongs: () => { //This is the microservice endpoint.
     server.get('/api/song/:id/relatedtracks', (req, res) => {
       let id = req.params.id;
-      database.getRelatedSongs(id)
+      let term = `SELECT * FROM songs WHERE
+               id = (SELECT songa FROM related WHERE id=${id})
+            OR id = (SELECT songb FROM related WHERE id=${id})
+            OR id = (SELECT songc FROM related WHERE id=${id});`;
+      database.process(term)
         .then(songs => {
           res.send(convert.format(songs.rows)).status(200).end();
       }).catch(err => {
@@ -32,7 +36,7 @@ const route = {
       console.log(req.body);
       let relationship = null; //TODO: process the req.body
       let term = ``; //TODO: define SQL command
-      database.create(id, term)
+      database.process(term)
         .then(() => {}) //TODO: success code (201)
         .catch((err) => {});//TODO: failure status codes
     });
@@ -41,10 +45,16 @@ const route = {
   readRelation: () => {
     server.get('/api/related/:id', (req, res) => {
       let id = req.params.id;
-      let term = ``; //TODO: define SQL command
-      database.read(id)
-        .then(() => {})  //TODO: success code (200), send record
-        .catch(() => {});//TODO: failure status codes
+      let term = `SELECT * FROM related WHERE id = ${id};`;
+      database.process(term)
+        .then((songs) => {
+          res.send(songs).status(200).end();
+        })
+        .catch((err) => {
+          console.log(`Error reading ${id}'s related songs`);
+          console.log(err);
+          res.status(500).end();
+        });
     });
   },
 
@@ -54,10 +64,16 @@ const route = {
       let relationship = req.body;
       if(validate.relationUpdate(relationship, id)) {
         let term = convert.toUpdateQuery(relationship);
-        console.log(term);
-        database.update(id, newRecord)
-          .then(() => {})//TODO: success code (200? 202?), send record
-          .catch(() => {});//TODO: failure status codes
+        database.process(term)
+          .then(() => {
+            console.log(`Successful update of ${id}`);
+            res.send(202).end();
+          })
+          .catch((err) => {
+            console.log('Database error updating relation:');
+            console.log(err);
+            res.status(500).end();
+          });
       } else {
         console.log('Rejecting invalid update request');
         res.status(422).end();
@@ -66,11 +82,18 @@ const route = {
   },
 
   deleteSong: () => {
-    server.delete('/api/song/:id', (req, res) => {
+    server.delete('/api/related/:id', (req, res) => {
       let id = req.params.id;
-      database.delete(id)
-        .then(() => {}) //TODO: success code?
-        .catch(() => {}) //TODO: error code/response
+      let term = `DELETE FROM related WHERE id = ${id}`;
+      database.process(term)
+        .then(() => {
+          res.status(200).end();
+        })
+        .catch((err) => {
+          console.log(`Error deleteing ${id}:`);
+          console.log(err);
+          res.send(500).end();
+        });
     })
   },
 };
@@ -89,10 +112,8 @@ const convert = {
     });
     return data;
   },
+
   toUpdateQuery: (data) => {
-    //need to determine what parameters exist on data,
-    //it can be songa, songb, and/or songc
-    //then generate a postgreSQL query and return it as a string
     let set = '';
     let id = null;
     for (let key in data) {
@@ -108,9 +129,11 @@ const convert = {
 }
 
 const validate = {
+  newRelation: (relation) => {
+    return (relation[id] && relation[songa] && relation[songb] && relation[songc]);
+  },
   relationUpdate: (relation, id) => {
     //Perform very basic validation.
-    //TODO: check input lengths
     const validEntries = {
       'id': 'number',
       'songa': 'number',
@@ -161,6 +184,7 @@ const cors = () => {
 }
 
 //********************** START SERVER **********************
+
 ((initialize) => {
   //SECURITY & CONFIGURATION:
   cors();
