@@ -2,7 +2,6 @@ const database = require('./db/db.js');
 const CONFIG = require('../config.js');
 const express = require('express');
 const server = express();
-const fs = require('fs');
 const path = require('path');
 const port = CONFIG.SERVER.PORT;
 
@@ -20,21 +19,21 @@ const route = {
           res.send(convert.format(songs.rows)).status(200).end();
         })
         .catch(err => {
-          //TODO: error codes
           console.log(err);
+          res.status(500).end();
         })
     })
   },
-  create: () => {
+  createSong: (record) => {
     server.post('/api/song/:id', (req, res) => {
       let id = req.params.id;
-      let record = null; //TODO: define document
-      database.create(id, record)
+      let term = ``; //TODO: define SQL command
+      database.create(id, term)
         .then(() => {}) //TODO: success code (201)
         .catch((err) => {});//TODO: failure status codes
     });
   },
-  read: () => {
+  readSong: () => {
     server.get('/api/song/:id', (req, res) => {
       let id = req.params.id;
       database.read(id)
@@ -42,7 +41,7 @@ const route = {
         .catch(() => {});//TODO: failure status codes
     });
   },
-  update: () => {
+  updateSong: () => {
     server.put('/api/song/:id', (req, res) => {
       let id = req.params.id;
       let newRecord = null; //TODO: define document
@@ -51,14 +50,14 @@ const route = {
         .catch(() => {});//TODO: failure status codes
     });
   },
-  delete: () => {
+  deleteSong: () => {
     server.delete('/api/song/:id', (req, res) => {
       let id = req.params.id;
       database.delete(id)
         .then(() => {}) //TODO: success code?
         .catch(() => {}) //TODO: error code/response
     })
-  }
+  },
 };
 
 //************** SERVER-SIDE PROCESSING FUNCTIONS **************
@@ -105,11 +104,11 @@ const cors = () => {
   route.serveClient();
   route.serveSongs();
 
-  //CRUD:
-  route.read();
-  route.update();
-  route.delete();
-  route.create();
+  //CRUD: TODO: enable these
+  route.readSong();
+  route.updateSong();
+  route.deleteSong();
+  route.createSong();
 
   //EXPOSE:
   server.listen(port, () => {
