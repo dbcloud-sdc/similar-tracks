@@ -1,8 +1,5 @@
-//NOTE: this is a skeleton/stub file
-//Many of the status codes and specific functionality has not been completed.
-
-import CONFIG from '../config.js';
-import DB from './db/db.js';
+const database = require('./db/db.js');
+const CONFIG = require('../config.js');
 const express = require('express');
 const server = express();
 const fs = require('fs');
@@ -18,10 +15,9 @@ const route = {
   serveSongs: () => {
     server.get('/api/song/:id/relatedtracks', (req, res) => {
       let id = req.params.id;
-      DB.getSongs()
+      database.getSongs(id)
         .then(songs => {
-          //TODO: send songs
-          //TODO: status codes (200)
+          res.send(convert.format(songs.rows)).status(200).end();
         })
         .catch(err => {
           //TODO: error codes
@@ -33,7 +29,7 @@ const route = {
     server.post('/api/song/:id', (req, res) => {
       let id = req.params.id;
       let record = null; //TODO: define document
-      DB.create(id, record)
+      database.create(id, record)
         .then(() => {}) //TODO: success code (201)
         .catch((err) => {});//TODO: failure status codes
     });
@@ -41,7 +37,7 @@ const route = {
   read: () => {
     server.get('/api/song/:id', (req, res) => {
       let id = req.params.id;
-      DB.read(id)
+      database.read(id)
         .then(() => {})  //TODO: success code (200), send record
         .catch(() => {});//TODO: failure status codes
     });
@@ -50,7 +46,7 @@ const route = {
     server.put('/api/song/:id', (req, res) => {
       let id = req.params.id;
       let newRecord = null; //TODO: define document
-      DB.update(id, newRecord)
+      database.update(id, newRecord)
         .then(() => {})//TODO: success code (200? 202?), send record
         .catch(() => {});//TODO: failure status codes
     });
@@ -58,7 +54,7 @@ const route = {
   delete: () => {
     server.delete('/api/song/:id', (req, res) => {
       let id = req.params.id;
-      DB.delete(id)
+      database.delete(id)
         .then(() => {}) //TODO: success code?
         .catch(() => {}) //TODO: error code/response
     })
@@ -67,7 +63,19 @@ const route = {
 
 //************** SERVER-SIDE PROCESSING FUNCTIONS **************
 
-//TODO: not needed for now - placeholder.
+const convert = {
+  format: (data) => {
+    data.forEach(song => {
+      song.album_pic = `https://s3.amazonaws.com/sdc-dbcloud/images/${song.album_pic}.jpg`;
+      song.user_pic = `https://s3.amazonaws.com/sdc-dbcloud/images/${song.user_pic}.jpg`;
+      song.user = {
+        pic: song.user_pic,
+        username: song.username
+      };
+    });
+    return data;
+  }
+}
 
 //********************** SECURITY CONFIG **********************
 
