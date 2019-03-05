@@ -1,12 +1,7 @@
-const CONFIG = {
-  DATABASE_SQL: {
+module.exports = {
+  POSTGRES: {
     URL: 'url',
-    USER: 'user',
-    PASS: 'pass',
-    DBNAME: 'dbname'
-  },
-  DATABASE_NOSQL: {
-    URL: 'url',
+    PORT: port,
     USER: 'user',
     PASS: 'pass',
     DBNAME: 'dbname'
