@@ -33,12 +33,23 @@ const route = {
   createRelation: () => {
     server.post('/api/related/:id', (req, res) => {
       let id = req.params.id;
-      console.log(req.body);
-      let relationship = null; //TODO: process the req.body
-      let term = ``; //TODO: define SQL command
-      database.process(term)
-        .then(() => {}) //TODO: success code (201)
-        .catch((err) => {});//TODO: failure status codes
+      let relationship = req.body;
+      if (validate.relation(relationship,id,true)) {
+        let term = `INSERT INTO related(id, songa, songb, songc)
+            VALUES (${id}, ${relationship.songa}, ${relationship.songb}, ${relationship.songc})`;
+        database.process(term)
+        .then(() => {
+          res.status(201).end();
+        })
+        .catch((err) => {
+          console.log(`Error adding new item to ${id}`);
+          console.log(err);
+          res.status(500).end();
+        });
+      } else {
+        console.log('Rejecting invalid post request');
+        res.send(400).end();
+      }
     });
   },
 
@@ -48,7 +59,7 @@ const route = {
       let term = `SELECT * FROM related WHERE id = ${id};`;
       database.process(term)
         .then((songs) => {
-          res.send(songs).status(200).end();
+          res.send(songs.rows).status(200).end();
         })
         .catch((err) => {
           console.log(`Error reading ${id}'s related songs`);
@@ -62,7 +73,7 @@ const route = {
     server.put('/api/related/:id', (req, res) => {
       let id = req.params.id;
       let relationship = req.body;
-      if(validate.relationUpdate(relationship, id)) {
+      if(validate.relation(relationship, id)) {
         let term = convert.toUpdateQuery(relationship);
         database.process(term)
           .then(() => {
@@ -76,7 +87,7 @@ const route = {
           });
       } else {
         console.log('Rejecting invalid update request');
-        res.status(422).end();
+        res.status(400).end();
       }
     });
   },
@@ -132,7 +143,7 @@ const validate = {
   newRelation: (relation) => {
     return (relation[id] && relation[songa] && relation[songb] && relation[songc]);
   },
-  relationUpdate: (relation, id) => {
+  relation: (relation, id, post = false) => {
     //Perform very basic validation.
     const validEntries = {
       'id': 'number',
@@ -158,6 +169,13 @@ const validate = {
           console.log(`Typeof ${key} is ${typeof relation[key]} instead of ${validEntries[key]}`);
           return false;
         }
+      }
+    }
+
+    if(post) {
+      if(!(relation.hasOwnProperty('songa') && relation.hasOwnProperty('songb') && relation.hasOwnProperty('songc'))) {
+        console.log(`Post was rejected due to missing a required property`);
+        return false;
       }
     }
     return true;
