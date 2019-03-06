@@ -1,4 +1,5 @@
 // const database = require('./db/db.js');
+require('newrelic');
 const CONFIG = require('../config.js');
 const express = require('express');
 const server = express();
