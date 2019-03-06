@@ -1,73 +1,10 @@
-//NOTE: this is a skeleton/stub file
-//Many of the status codes and specific functionality has not been completed.
-
-import CONFIG from '../config.js';
-import DB from './db/db.js';
+// const database = require('./db/db.js');
+const CONFIG = require('../config.js');
 const express = require('express');
 const server = express();
-const fs = require('fs');
 const path = require('path');
+const controller = require('./controllers/controller.js');
 const port = CONFIG.SERVER.PORT;
-
-//********************** SERVER ROUTES **********************
-
-const route = {
-  serveClient: () => {
-    server.use('/song/:songID', express.static(path.join(__dirname, '../dist/')));
-  },
-  serveSongs: () => {
-    server.get('/api/song/:id/relatedtracks', (req, res) => {
-      let id = req.params.id;
-      DB.getSongs()
-        .then(songs => {
-          //TODO: send songs
-          //TODO: status codes (200)
-        })
-        .catch(err => {
-          //TODO: error codes
-          console.log(err);
-        })
-    })
-  },
-  create: () => {
-    server.post('/api/song/:id', (req, res) => {
-      let id = req.params.id;
-      let record = null; //TODO: define document
-      DB.create(id, record)
-        .then(() => {}) //TODO: success code (201)
-        .catch((err) => {});//TODO: failure status codes
-    });
-  },
-  read: () => {
-    server.get('/api/song/:id', (req, res) => {
-      let id = req.params.id;
-      DB.read(id)
-        .then(() => {})  //TODO: success code (200), send record
-        .catch(() => {});//TODO: failure status codes
-    });
-  },
-  update: () => {
-    server.put('/api/song/:id', (req, res) => {
-      let id = req.params.id;
-      let newRecord = null; //TODO: define document
-      DB.update(id, newRecord)
-        .then(() => {})//TODO: success code (200? 202?), send record
-        .catch(() => {});//TODO: failure status codes
-    });
-  },
-  delete: () => {
-    server.delete('/api/song/:id', (req, res) => {
-      let id = req.params.id;
-      DB.delete(id)
-        .then(() => {}) //TODO: success code?
-        .catch(() => {}) //TODO: error code/response
-    })
-  }
-};
-
-//************** SERVER-SIDE PROCESSING FUNCTIONS **************
-
-//TODO: not needed for now - placeholder.
 
 //********************** SECURITY CONFIG **********************
 
@@ -89,19 +26,23 @@ const cors = () => {
 }
 
 //********************** START SERVER **********************
+
 ((initialize) => {
-  //SECURITY:
+  //SECURITY & CONFIGURATION:
   cors();
+  server.use(express.json());
 
-  //CLIENT:
-  route.serveClient();
-  route.serveSongs();
+  //Allow serving the client:
+  server.use('/song/:songID', express.static(path.join(__dirname, '../dist/')));
 
-  //CRUD:
-  route.read();
-  route.update();
-  route.delete();
-  route.create();
+  //Primary API call from client:
+  server.get('/api/song/:id/relatedtracks', controller.relatedTracks);
+
+  //CRUD operations on primary table (related tracks):
+  server.post('/api/related/:id', controller.createRelation);
+  server.get('/api/related/:id', controller.readRelation);
+  server.put('/api/related/:id', controller.updateRelation);
+  server.delete('/api/related/:id', controller.deleteRelation);
 
   //EXPOSE:
   server.listen(port, () => {

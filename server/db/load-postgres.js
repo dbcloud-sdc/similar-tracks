@@ -56,6 +56,7 @@ const createSongTable = `
             num_reposts int
           )`;
 
+
 //******************** RELATED TABLE ***************/
 const relatedCSVSource = path.join(__dirname, '../../../data.nosync/relations-table.csv');
 const loadRelatedCSV = `COPY related FROM '${relatedCSVSource}' DELIMITER ',' CSV HEADER;`;
