@@ -1,4 +1,4 @@
-const database = require('./db/db.js');
+const database = require('../db/db.js');
 const processor = require('./processing.js');
 
 module.exports = {
