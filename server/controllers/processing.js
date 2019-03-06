@@ -1,5 +1,5 @@
 module.exports = {
-  convert = {
+  convert: {
     format:  (data) => {
         data.forEach(song => {
         song.album_pic = `https://s3.amazonaws.com/sdc-dbcloud/images/${song.album_pic}.jpg`;
@@ -25,7 +25,7 @@ module.exports = {
       return `UPDATE related SET ${set} WHERE id = ${id};`;
     }
   },
-  validate = {
+  validate: {
     newRelation: (relation) => {
       return (relation[id] && relation[songa] && relation[songb] && relation[songc]);
     },
