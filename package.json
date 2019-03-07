@@ -11,7 +11,8 @@
     "build-dev": "webpack --mode=development",
     "build": "webpack --mode=production",
     "build:watch": "webpack -d --watch",
-    "start": "node --experimental-modules server/index.mjs",
+    "start": "nodemon ./server/server.js",
+    "start-old": "node --experimental-modules server/index.mjs",
     "server": "nodemon --experimental-modules server/index.mjs",
     "createDB": "mysql -u root  < db-archive/schema.sql",
     "seedDB": "node --experimental-modules db-archive/seed.mjs"
@@ -33,6 +34,7 @@
     "faker": "^4.1.0",
     "i": "^0.3.6",
     "mysql": "^2.16.0",
+    "newrelic": "^5.6.0",
     "npm": "^6.8.0",
     "path": "^0.12.7",
     "react": "^16.8.2",
@@ -44,7 +46,6 @@
     "webpack-cli": "^3.2.3"
   },
   "devDependencies": {
-    "cassandra-driver": "^4.0.0",
     "nodemon": "^1.18.10",
     "pg": "^7.8.1",
     "pg-copy-streams": "^1.2.0",
