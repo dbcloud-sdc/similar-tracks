@@ -15,7 +15,6 @@ const cors = () => {
       res.header('Access-Control-Allow-Origin', `${CONFIG.CORS.ORIGIN}`);
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
       res.header('Access-Control-Allow-Methods', `${CONFIG.CORS.METHODS}`);
-      console.log(`CORS has been enabled for the server`);
       if (req.method === 'OPTIONS') {
         return res.status(200).end();
       }
