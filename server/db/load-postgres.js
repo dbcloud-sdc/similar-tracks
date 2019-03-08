@@ -19,7 +19,7 @@ const load = (reference, dropTable, createTable, loadCSV) => {
     .then(() => {
       console.log(`${reference} table created`);
       pgQuery(loadCSV)
-      .then(() => {
+      .then((doc) => {
         console.log(`${reference} table loaded from CSV file`);
         client.end();
       })
@@ -41,7 +41,7 @@ const pgQuery = (term) => {
 
 //******************** SONG TABLE ***************/
 const songCSVSource = path.join(__dirname, '../../../data.nosync/songs_table.csv');
-const loadSongCSV = `COPY songs FROM '${songCSVSource}' DELIMITER ',' CSV HEADER;`;
+const loadSongCSV = 'SELECT * FROM songs;'//`\copy songs FROM '${songCSVSource}' DELIMITER ',' CSV HEADER;`;
 const dropSongTables = `DROP TABLE IF EXISTS songs`;
 const createSongTable = `
           CREATE TABLE songs (
