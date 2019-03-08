@@ -1,13 +1,13 @@
 const CONFIG = require('../../config.js');
 const pg = require('pg');
 
-const client = new pg.Client({
-  user: CONFIG.POSTGRES.USER,
-  host: CONFIG.POSTGRES.URL,
-  database: CONFIG.POSTGRES.DBNAME,
-  password: CONFIG.POSTGRES.PASS,
-  port: CONFIG.POSTGRES.PORT,
-});
+// const client = new pg.Client({
+//   user: CONFIG.POSTGRES.USER,
+//   host: CONFIG.POSTGRES.URL,
+//   database: CONFIG.POSTGRES.DBNAME,
+//   password: CONFIG.POSTGRES.PASS,
+//   port: CONFIG.POSTGRES.PORT,
+// });
 
 const pool = new pg.Pool({
   user: CONFIG.POSTGRES.USER,
